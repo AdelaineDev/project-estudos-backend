@@ -1,5 +1,6 @@
 package com.project.dscatalog.controller;
 
+import com.project.dscatalog.DTO.CategoriaDTO;
 import com.project.dscatalog.model.Categorias;
 import com.project.dscatalog.service.CategoriasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class CategoriasController {
     public CategoriasService categoriasService;
 
     @GetMapping
-    public ResponseEntity<List <Categorias>> findAll() {
-        List<Categorias> list = categoriasService.findAll();
+    public ResponseEntity<List <CategoriaDTO>> findAll() {
+        List<CategoriaDTO> list = categoriasService.findAll();
 
         return ResponseEntity.ok().body(list);
     }
