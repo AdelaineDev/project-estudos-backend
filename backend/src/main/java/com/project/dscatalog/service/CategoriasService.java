@@ -1,6 +1,7 @@
 package com.project.dscatalog.service;
 
 import com.project.dscatalog.DTO.CategoriaDTO;
+import com.project.dscatalog.service.exceptions.EntityNotFoundException;
 import com.project.dscatalog.model.Categorias;
 import com.project.dscatalog.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CategoriasService {
     @Transactional
     public CategoriaDTO findById(Long id){
         Optional<Categorias> obj = categoryRepository.findById(id);
-        Categorias entidade = obj.get();
+        Categorias entidade = obj.orElseThrow(()->new EntityNotFoundException("Categoria não encontrada"));
         return new CategoriaDTO(entidade);
 
 
