@@ -20,7 +20,7 @@ public class Categorias implements Serializable {
     private Long id;
     private String name;
 
-    public Categorias(Long id, String name) {
+    public Categorias() {
         this.id = id;
         this.name = name;
     }
