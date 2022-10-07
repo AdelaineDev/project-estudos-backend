@@ -1,42 +1,37 @@
 package com.project.dscatalog.model;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Table (name = "tb_category")
 @Entity
-@Table (name = "category")
-public class Categorias implements Serializable {
-    private static final long serialVersionId =1L;
+public class Categorias  implements Serializable{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+;
 
-    public Categorias() {
-        this.id = id;
-        this.name = name;
-    }
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant createdAt;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Categorias category = (Categorias) o;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant updateAt;
 
-        return Objects.equals(id, category.id);
-    }
 
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
 }

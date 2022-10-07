@@ -8,22 +8,23 @@ import com.project.dscatalog.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
+
 
 import javax.transaction.Transactional;
-import java.util.List;
+
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CategoriasService {
     @Autowired
     private CategoryRepository categoryRepository;
         @Transactional
-    public List<CategoriaDTO> findAll(){
-        List<Categorias> list= categoryRepository.findAll();
-        return list.stream().map(x -> new  CategoriaDTO(x)).collect(Collectors.toList());
+        public Page<CategoriaDTO> findAllPaged(PageRequest pageRequest){
+        Page<Categorias> list= categoryRepository.findAll(pageRequest);
+        return list.map(CategoriaDTO::new);
 
 
     }
@@ -60,14 +61,15 @@ public class CategoriasService {
     }
 
     public void delete(Long id) throws DatabaseException {
-            try{
+        try {
             categoryRepository.deleteById(id);
 
-    }catch (EmptyResultDataAccessException e){
-                throw new EntityNotFoundException("Não encontrado" + id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new EntityNotFoundException("Não encontrado" + id);
 
-    }catch (DataIntegrityViolationException e){
-                throw new DatabaseException("integridade violada");
-            }
-  }
-}
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("integridade violada");
+        }
+    }}
+
+
