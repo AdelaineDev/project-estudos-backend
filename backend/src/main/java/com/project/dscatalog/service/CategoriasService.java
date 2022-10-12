@@ -70,6 +70,6 @@ public class CategoriasService {
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("integridade violada");
         }
-    }}
+        }}
 
 

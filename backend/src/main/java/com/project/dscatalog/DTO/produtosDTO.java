@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-public class produtosDTO {
+public class produtosDTO extends Produtos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -49,4 +49,6 @@ public class produtosDTO {
         this (entity);
         categorias.forEach(cat -> this.categorias.add(new CategoriaDTO(cat)));
     }
+
+
 }
