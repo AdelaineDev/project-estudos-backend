@@ -2,10 +2,12 @@ package com.project.dscatalog.DTO;
 
 import com.project.dscatalog.model.Categorias;
 import com.project.dscatalog.model.Produtos;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -15,7 +17,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-public class produtosDTO extends Produtos {
+public class produtosDTO implements Serializable {
+    private static long serialVersionId = 1l;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,7 +51,7 @@ public class produtosDTO extends Produtos {
     public produtosDTO(Produtos entity, Set<Categorias> categorias){
         this (entity);
         categorias.forEach(cat -> this.categorias.add(new CategoriaDTO(cat)));
-    }
+}
 
 
 }
