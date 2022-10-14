@@ -2,7 +2,7 @@ package com.project.dscatalog.DTO;
 
 import com.project.dscatalog.model.Categorias;
 import com.project.dscatalog.model.Produtos;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -54,4 +54,6 @@ public class produtosDTO implements Serializable {
 }
 
 
+    public produtosDTO(produtosDTO produtos) {
+    }
 }
